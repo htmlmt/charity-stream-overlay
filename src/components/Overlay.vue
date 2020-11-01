@@ -67,11 +67,6 @@ export default {
 	components: {
 		Thermo,
 	},
-	computed: {
-        ...mapGetters([
-            'incentives',
-        ]),
-    },
 	props: {
 		avatarImageURL: {
 			type: String,
@@ -98,5 +93,10 @@ export default {
 			type: Object,
 		},
 	},
+	computed: {
+        ...mapGetters([
+            'incentives',
+        ]),
+    },
 }
 </script>

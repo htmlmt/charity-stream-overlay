@@ -41,7 +41,7 @@
                 <p>
                     Hi {{ participant.displayName }}! Here's a link to your streaming overlay:<br>
                     <a :href="`/participants/${participantID}`">
-                        https://extralifeoverlay.netlify.app/participants/{{ participantID }}
+                        https://{{ domain }}/participants/{{ participantID }}
                     </a>
                 </p>
             </div>
@@ -195,7 +195,7 @@
                 <p>
                     Thank you, {{ participant.displayName }}! Here's a link to your streaming overlay:<br>
                     <a :href="`/participants/${participantID}/?thermo=${thermoResource}&recentDonations=${recentDonationsResource}&name=${nameSetting}`">
-                        https://extralifeoverlay.netlify.app/participants/{{ participantID }}/?thermo={{ thermoResource }}&amp;recentDonations={{ recentDonationsResource }}&amp;name={{ nameSetting }}
+                        https://{{ domain }}/participants/{{ participantID }}/?thermo={{ thermoResource }}&amp;recentDonations={{ recentDonationsResource }}&amp;name={{ nameSetting }}
                     </a>
                 </p>
             </div>
@@ -210,6 +210,7 @@ export default {
 	name: 'Home',
     data() {
         return {
+            domain: '',
             loadingParticipant: false,
             nameSetting: '',
             participantID: '',
@@ -233,6 +234,13 @@ export default {
                 this.teamID = '';
             }
         },
+    },
+    created() {
+        this.domain = window.location.hostname;
+        
+        if (location.port) {
+            this.domain = this.domain + ':' + location.port;
+        }
     },
     methods: {
         blurParticipantID: function(e){

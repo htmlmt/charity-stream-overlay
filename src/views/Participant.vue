@@ -22,6 +22,9 @@ import Overlay from '@/components/Overlay';
 
 export default {
     name: 'Participant',
+    components: {
+        Overlay,
+    },
     data() {
         return {
             hideName: false,
@@ -30,9 +33,6 @@ export default {
             name: '',
             thermoResource: {},
         }
-    },
-    components: {
-        Overlay,
     },
     computed: {
         ...mapGetters([
